@@ -1,0 +1,47 @@
+[display]
+width = 480
+height = 800
+fps = 30
+fullscreen = true
+
+[i2c]
+# HyperPixel 4.0 blocks the standard i2c bus (1).
+# Connect PCA9685 to the HyperPixel breakout i2c header → bus 10.
+bus = 10
+
+[servo.lane_0]
+channel = 0
+neutral_angle = 90.0
+vend_angle = 170.0   # neutral + 80° — flip to 10.0 if servo is mounted inverted
+vend_hold_ms = 400
+return_ms = 300
+
+[servo.lane_1]
+channel = 1
+neutral_angle = 90.0
+vend_angle = 170.0
+vend_hold_ms = 400
+return_ms = 300
+
+[servo.lane_2]
+channel = 2
+neutral_angle = 90.0
+vend_angle = 170.0
+vend_hold_ms = 400
+return_ms = 300
+
+[servo.lane_3]
+channel = 3
+neutral_angle = 90.0
+vend_angle = 170.0
+vend_hold_ms = 400
+return_ms = 300
+
+[paths]
+inventory  = "data/inventory.json"
+vend_log   = "data/vend_log.jsonl"
+pack_cache = "assets/packs/cache"
+placeholder = "assets/ui/placeholder_pack.png"
+
+[ui]
+dispensing_display_ms = 3000

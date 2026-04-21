@@ -1,0 +1,9 @@
+pygame>=2.5.0
+toml>=0.10.2
+Pillow>=10.0.0
+requests>=2.31.0
+adafruit-circuitpython-pca9685>=3.4.0
+adafruit-circuitpython-motor>=3.4.0
+adafruit-extended-bus>=1.0.2
+RPi.GPIO>=0.7.1; platform_machine == "aarch64"
+pytest>=7.0.0
