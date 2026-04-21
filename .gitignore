@@ -32,3 +32,4 @@ assets/packs/cache/
 
 # Vend log — machine-local data, commit intentionally if you want history in git
 data/vend_log.jsonl
+.claude/
