@@ -85,13 +85,6 @@
           "series": "Mega Evolutions",
           "set_code": "POR",
           "image": "https://pokebros.com.hr/wp-content/uploads/2026/01/pokemon_tcg_mega_evolution-perfect_order_booster_wrap_mega_starmie-high.webp"
-        },
-        {
-          "pack_id": "perfect-order",
-          "name": "Perfect Order",
-          "series": "Mega Evolutions",
-          "set_code": "POR",
-          "image": "https://pokebros.com.hr/wp-content/uploads/2026/01/pokemon_tcg_mega_evolution-perfect_order_booster_wrap_mega_starmie-high.webp"
         }
       ]
     },
@@ -99,13 +92,6 @@
       "lane_id": 3,
       "label": "Lane 4",
       "stack": [
-        {
-          "pack_id": "sv-stellar-crown",
-          "name": "Stellar Crown",
-          "series": "Scarlet & Violet",
-          "set_code": "SV7",
-          "image": ""
-        },
         {
           "pack_id": "sv-stellar-crown",
           "name": "Stellar Crown",

@@ -45,3 +45,4 @@ placeholder = "assets/ui/placeholder_pack.png"
 
 [ui]
 dispensing_display_ms = 3000
+screensaver_timeout_s = 60

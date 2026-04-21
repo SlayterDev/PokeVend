@@ -38,6 +38,7 @@ class PathsConfig:
 @dataclass
 class UIConfig:
     dispensing_display_ms: int = 3000
+    screensaver_timeout_s: int = 60
 
 
 @dataclass
@@ -89,7 +90,8 @@ class Config:
 
         if "ui" in raw:
             cfg.ui = UIConfig(
-                dispensing_display_ms=raw["ui"].get("dispensing_display_ms", 3000)
+                dispensing_display_ms=raw["ui"].get("dispensing_display_ms", 3000),
+                screensaver_timeout_s=raw["ui"].get("screensaver_timeout_s", 60),
             )
 
         return cfg
