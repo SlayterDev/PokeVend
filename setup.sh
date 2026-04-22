@@ -55,10 +55,16 @@ if uname -m | grep -qE "aarch64|armv7l"; then
         "${INSTALL_DIR}/pokevend.service" \
         > "${SERVICE_DIR}/pokevend.service"
     systemctl --user daemon-reload
-    systemctl --user enable pokevend.service
-    # Allow the user service to start at boot without an interactive login
+    # Allow the user's systemd instance to persist at boot (needed for Restart=on-failure)
     loginctl enable-linger "$(whoami)"
-    echo "Service enabled. It will start automatically when the desktop session starts."
+
+    # XDG autostart triggers the service when the desktop session loads.
+    # This is more reliable than graphical-session.target on Raspberry Pi OS.
+    AUTOSTART_DIR="${HOME}/.config/autostart"
+    mkdir -p "${AUTOSTART_DIR}"
+    cp "${INSTALL_DIR}/pokevend.desktop" "${AUTOSTART_DIR}/pokevend.desktop"
+
+    echo "Service installed. It will start automatically when the desktop session loads."
     echo "Start now with: systemctl --user start pokevend"
     echo ""
 fi

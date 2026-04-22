@@ -1,7 +1,5 @@
 [Unit]
 Description=PokéVend — Pokemon card vending machine
-After=graphical-session.target
-Wants=graphical-session.target
 
 [Service]
 Type=simple
@@ -12,6 +10,3 @@ Restart=on-failure
 RestartSec=5
 StandardOutput=journal
 StandardError=journal
-
-[Install]
-WantedBy=graphical-session.target
