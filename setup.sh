@@ -34,7 +34,7 @@ if [ ! -f data/inventory.json ]; then
     cp data/inventory.json.example data/inventory.json
 fi
 
-# Raspberry Pi specific guidance
+# Raspberry Pi specific setup
 if uname -m | grep -qE "aarch64|armv7l"; then
     echo ""
     echo "=== Raspberry Pi detected ==="
@@ -43,6 +43,23 @@ if uname -m | grep -qE "aarch64|armv7l"; then
     echo "    dtoverlay=i2c-gpio,bus=10,i2c_gpio_sda=<SDA_PIN>,i2c_gpio_scl=<SCL_PIN>"
     echo "  Reboot, then verify: i2cdetect -y 10"
     echo "  PCA9685 should appear at address 0x40"
+    echo ""
+
+    # Install systemd user service
+    echo "Installing systemd user service..."
+    INSTALL_DIR="$(cd "$(dirname "$0")" && pwd)"
+    SERVICE_DIR="${HOME}/.config/systemd/user"
+    mkdir -p "${SERVICE_DIR}"
+    sed \
+        -e "s|__WORKING_DIR__|${INSTALL_DIR}|g" \
+        "${INSTALL_DIR}/pokevend.service" \
+        > "${SERVICE_DIR}/pokevend.service"
+    systemctl --user daemon-reload
+    systemctl --user enable pokevend.service
+    # Allow the user service to start at boot without an interactive login
+    loginctl enable-linger "$(whoami)"
+    echo "Service enabled. It will start automatically when the desktop session starts."
+    echo "Start now with: systemctl --user start pokevend"
     echo ""
 fi
 

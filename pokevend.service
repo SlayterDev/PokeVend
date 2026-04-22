@@ -1,0 +1,17 @@
+[Unit]
+Description=PokéVend — Pokemon card vending machine
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=__WORKING_DIR__
+Environment=SDL_AUDIODRIVER=dummy
+ExecStart=__WORKING_DIR__/venv/bin/python -m pokevend.main
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical-session.target
