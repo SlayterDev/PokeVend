@@ -30,6 +30,8 @@ htmlcov/
 # Remote image cache — regenerated automatically on first load
 assets/packs/cache/
 
-# Vend log — machine-local data, commit intentionally if you want history in git
+# Data files — machine-local, seeded by setup.sh
+data/inventory.json
+data/packs.json
 data/vend_log.jsonl
 .claude/

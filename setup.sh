@@ -23,8 +23,16 @@ pip install -r requirements.txt --quiet
 # Ensure runtime directories exist
 mkdir -p data assets/packs/cache assets/packs/local assets/ui assets/fonts
 
-# Seed empty vend log
+# Seed data files if not present
 touch data/vend_log.jsonl
+
+if [ ! -f data/packs.json ]; then
+    cp data/packs.json.example data/packs.json
+fi
+
+if [ ! -f data/inventory.json ]; then
+    cp data/inventory.json.example data/inventory.json
+fi
 
 # Raspberry Pi specific guidance
 if uname -m | grep -qE "aarch64|armv7l"; then

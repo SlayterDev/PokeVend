@@ -8,7 +8,7 @@ import pygame
 from pokevend.ui import theme
 
 
-_ART_SIZE = (110, 151)
+_ART_SIZE = (110, 201)
 _NUM_SPRITES = 6
 _SPEED_MIN = 0.6
 _SPEED_MAX = 1.6

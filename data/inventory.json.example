@@ -1,0 +1,8 @@
+{
+  "lanes": [
+    {"lane_id": 0, "label": "Lane 1", "stack": []},
+    {"lane_id": 1, "label": "Lane 2", "stack": []},
+    {"lane_id": 2, "label": "Lane 3", "stack": []},
+    {"lane_id": 3, "label": "Lane 4", "stack": []}
+  ]
+}

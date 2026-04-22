@@ -33,7 +33,7 @@ class ImageLoader:
                 return self._placeholder
             except Exception:
                 pass
-        surf = pygame.Surface((160, 220), pygame.SRCALPHA)
+        surf = pygame.Surface((160, 293), pygame.SRCALPHA)
         surf.fill((45, 45, 65))
         pygame.draw.rect(surf, (70, 70, 100), surf.get_rect(), width=2, border_radius=8)
         self._placeholder = surf
