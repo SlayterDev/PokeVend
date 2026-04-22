@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=PokéVend
+Exec=systemctl --user start pokevend
+Hidden=false
+X-GNOME-Autostart-enabled=true
