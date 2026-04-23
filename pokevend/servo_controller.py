@@ -33,12 +33,20 @@ class RealServoController(ServoControllerBase):
             servo.angle = lc.neutral_angle
             self._servos[lane_id] = servo
 
+    def _sweep(self, servo, from_angle: float, to_angle: float, duration_ms: int, step_ms: int = 10) -> None:
+        steps = max(1, duration_ms // step_ms)
+        interval = duration_ms / 1000.0 / steps
+        for i in range(steps + 1):
+            servo.angle = from_angle + (to_angle - from_angle) * i / steps
+            if i < steps:
+                time.sleep(interval)
+
     def vend(self, lane_id: int) -> None:
         lc = self._lane_cfg(lane_id)
         servo = self._servos[lane_id]
         servo.angle = lc.neutral_angle
         time.sleep(0.05)
-        servo.angle = lc.vend_angle
+        self._sweep(servo, lc.neutral_angle, lc.vend_angle, lc.sweep_ms)
         time.sleep(lc.vend_hold_ms / 1000.0)
         servo.angle = lc.neutral_angle
         time.sleep(lc.return_ms / 1000.0)
@@ -47,7 +55,7 @@ class RealServoController(ServoControllerBase):
 class MockServoController(ServoControllerBase):
     def vend(self, lane_id: int) -> None:
         lc = self._lane_cfg(lane_id)
-        total_ms = 50 + lc.vend_hold_ms + lc.return_ms
+        total_ms = 50 + lc.sweep_ms + lc.vend_hold_ms + lc.return_ms
         print(f"[MOCK] vend lane={lane_id}  simulating {total_ms}ms")
         time.sleep(total_ms / 1000.0)
 

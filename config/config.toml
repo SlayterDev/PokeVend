@@ -13,6 +13,7 @@ bus = 10
 channel = 0
 neutral_angle = 90.0
 vend_angle = 170.0   # neutral + 80° — flip to 10.0 if servo is mounted inverted
+sweep_ms = 500       # time to ramp from neutral to vend_angle
 vend_hold_ms = 400
 return_ms = 300
 
@@ -20,6 +21,7 @@ return_ms = 300
 channel = 1
 neutral_angle = 90.0
 vend_angle = 170.0
+sweep_ms = 500
 vend_hold_ms = 400
 return_ms = 300
 
@@ -27,6 +29,7 @@ return_ms = 300
 channel = 2
 neutral_angle = 90.0
 vend_angle = 170.0
+sweep_ms = 500
 vend_hold_ms = 400
 return_ms = 300
 
@@ -34,6 +37,7 @@ return_ms = 300
 channel = 3
 neutral_angle = 90.0
 vend_angle = 170.0
+sweep_ms = 500
 vend_hold_ms = 400
 return_ms = 300
 

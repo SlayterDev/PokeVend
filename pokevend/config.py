@@ -23,6 +23,7 @@ class ServoLaneConfig:
     channel: int = 0
     neutral_angle: float = 90.0
     vend_angle: float = 170.0
+    sweep_ms: int = 500
     vend_hold_ms: int = 400
     return_ms: int = 300
 
@@ -75,6 +76,7 @@ class Config:
                     channel=val.get("channel", lane_id),
                     neutral_angle=float(val.get("neutral_angle", 90.0)),
                     vend_angle=float(val.get("vend_angle", 170.0)),
+                    sweep_ms=int(val.get("sweep_ms", 500)),
                     vend_hold_ms=int(val.get("vend_hold_ms", 400)),
                     return_ms=int(val.get("return_ms", 300)),
                 )
