@@ -6,7 +6,9 @@ fullscreen = true
 
 [i2c]
 # HyperPixel 4.0 blocks the standard i2c bus (1).
-# Connect PCA9685 to the HyperPixel breakout i2c header → bus 10.
+# Connect PCA9685 to the HyperPixel breakout i2c header
+# `ls /dev/i2c*` to view available buses. Then `i2cdetect -y XX` to find the address of your PCA9685.
+# You should see `40` in one of the entries of the output. This indicates the correct i2c bus number.
 bus = 10
 
 [servo.lane_0]

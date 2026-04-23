@@ -1,5 +1,7 @@
 # PokéVend
 
+This is the repo for the controller code for the 3D Printed [PokéVend]() Vending Machine. 3D printed parts can be found on [Printables](). Follow the instructions below to setup the controller code on a Raspberry Pi.
+
 ### Bill of Materials
 
 - Raspberry Pi 4 Model B
@@ -46,7 +48,9 @@ cd PokeVend
 ```toml
 [i2c]
 # HyperPixel 4.0 blocks the standard i2c bus (1).
-# Connect PCA9685 to the HyperPixel breakout i2c header → bus 10.
+# Connect PCA9685 to the HyperPixel breakout i2c header
+# `ls /dev/i2c*` to view available buses. Then `i2cdetect -y XX` to find the address of your PCA9685.
+# You should see `40` in one of the entries of the output. This indicates the correct i2c bus number.
 bus = 22 # <- Replace with the number from your device
 ```
 

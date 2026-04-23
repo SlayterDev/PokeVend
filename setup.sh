@@ -39,10 +39,9 @@ if uname -m | grep -qE "aarch64|armv7l"; then
     echo ""
     echo "=== Raspberry Pi detected ==="
     echo "HyperPixel 4.0 i2c setup:"
-    echo "  The HyperPixel blocks the standard i2c bus. Add to /boot/config.txt:"
-    echo "    dtoverlay=i2c-gpio,bus=10,i2c_gpio_sda=<SDA_PIN>,i2c_gpio_scl=<SCL_PIN>"
-    echo "  Reboot, then verify: i2cdetect -y 10"
-    echo "  PCA9685 should appear at address 0x40"
+    echo "  See https://learn.pimoroni.com/article/getting-started-with-hyperpixel-4#using-the-alternate-i2c-interface-for-advanced-users"
+    echo "  When you run i2cdetect, you should see the PCA9685 at address 0x40. If not, check your connections and ensure the HyperPixel is configured to use the alternate i2c interface."
+    echo "  Enter the number of the i2c bus that shows the PCA9685 (e.g. 10) in config/config.toml → [i2c] bus = XX"
     echo ""
 
     # Install systemd user service
