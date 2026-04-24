@@ -58,3 +58,8 @@ bus = 22 # <- Replace with the number from your device
 ```bash
 ./setup.sh
 ```
+
+- To start the app immediately run:
+```bash
+systemctl --user start pokevend
+```
