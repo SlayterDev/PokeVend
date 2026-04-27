@@ -46,7 +46,10 @@ class RealServoController(ServoControllerBase):
         servo = self._servos[lane_id]
         servo.angle = lc.neutral_angle
         time.sleep(0.05)
-        self._sweep(servo, lc.neutral_angle, lc.vend_angle, lc.sweep_ms)
+        if lc.sweep_ms > 0:
+            self._sweep(servo, lc.neutral_angle, lc.vend_angle, lc.sweep_ms)
+        else:
+            servo.angle = lc.vend_angle
         time.sleep(lc.vend_hold_ms / 1000.0)
         servo.angle = lc.neutral_angle
         time.sleep(lc.return_ms / 1000.0)
