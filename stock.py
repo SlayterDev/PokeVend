@@ -3,6 +3,7 @@
 
 import json
 import os
+import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -114,7 +115,7 @@ def add_pack_to_catalog(catalog: list[dict]) -> dict | None:
     return entry
 
 
-_LANE_KEYS = list("abcd")
+_LANE_KEYS = ["1", "2", "3", "4"]
 
 
 def pick_lane(inv: Inventory) -> "Lane":  # type: ignore[name-defined]
@@ -132,7 +133,7 @@ def pick_lane(inv: Inventory) -> "Lane":  # type: ignore[name-defined]
         val = input("\n> ").strip().lower()
         if val in valid:
             return lanes[_LANE_KEYS.index(val)]
-        print(f"  {RED}Type a letter ({'/'.join(_LANE_KEYS[:len(lanes)])}).{RST}")
+        print(f"  {RED}Type a number ({'/'.join(_LANE_KEYS[:len(lanes)])}).{RST}")
 
 
 def add_stock(inv: Inventory, catalog: list[dict]) -> None:
@@ -172,6 +173,31 @@ def add_stock(inv: Inventory, catalog: list[dict]) -> None:
     print(f"  {lane.label} now has {total} pack{'s' if total != 1 else ''}.{RST}")
 
 
+# ── Service helpers ───────────────────────────────────────────────────────────
+
+def is_raspberry_pi() -> bool:
+    try:
+        with open("/proc/device-tree/model", "r") as f:
+            return "raspberry pi" in f.read().lower()
+    except OSError:
+        return False
+
+
+def maybe_restart_service() -> None:
+    if not is_raspberry_pi():
+        return
+    ans = input(f"\nRestart pokevend service? {DIM}(y/N){RST} ").strip().lower()
+    if ans == "y":
+        result = subprocess.run(
+            ["systemctl", "--user", "restart", "pokevend"],
+            capture_output=True, text=True,
+        )
+        if result.returncode == 0:
+            print(f"  {GRN}✓ pokevend service restarted.{RST}")
+        else:
+            print(f"  {RED}Failed to restart service:{RST} {result.stderr.strip()}")
+
+
 # ── Main loop ─────────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -191,6 +217,7 @@ def main() -> None:
         choice = input("\n> ").strip().lower()
 
         if choice == "q":
+            maybe_restart_service()
             print("Bye!")
             break
         elif choice == "1":
