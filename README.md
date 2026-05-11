@@ -67,6 +67,20 @@ bus = 22 # <- Replace with the number from your device
 systemctl --user start pokevend
 ```
 
+### Servo Tweaking
+
+If you find your servos aren't at the correct angle once mounted, or they aren't vending properly, you can tweak the config file to fine tune the servo angles.
+
+```toml
+[servo.lane_0] # <- Lanes are numbers 0-3 from left to right
+channel = 0
+neutral_angle = 130.0 # <- This is the resting angle. Adjust this if the paddle is too far forward or back at rest.
+vend_angle = 32.0 # <- This is the angle at which the paddle should be pushed to vend. Adjust this if the paddle goes too far or not far enough.
+sweep_ms = 0
+vend_hold_ms = 750
+return_ms = 300
+```
+
 ### Inventory Management
 
 There is an included `stock.py` script that can be used to manage the inventory of your PokéVend. You can run it with the following command:
