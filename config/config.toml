@@ -14,15 +14,15 @@ bus = 10
 [servo.lane_0]
 channel = 0
 neutral_angle = 130.0
-vend_angle = 0.0   # neutral + 80° — flip to 10.0 if servo is mounted inverted
-sweep_ms = 0         # 0 = snap directly to vend_angle at full servo speed
+vend_angle = 32.0
+sweep_ms = 0
 vend_hold_ms = 750
 return_ms = 300
 
 [servo.lane_1]
 channel = 1
 neutral_angle = 130.0
-vend_angle = 0.0
+vend_angle = 32.0
 sweep_ms = 0
 vend_hold_ms = 750
 return_ms = 300
@@ -30,7 +30,7 @@ return_ms = 300
 [servo.lane_2]
 channel = 2
 neutral_angle = 130.0
-vend_angle = 0.0
+vend_angle = 32.0
 sweep_ms = 0
 vend_hold_ms = 750
 return_ms = 300
@@ -38,7 +38,7 @@ return_ms = 300
 [servo.lane_3]
 channel = 3
 neutral_angle = 130.0
-vend_angle = 0.0
+vend_angle = 32.0
 sweep_ms = 0
 vend_hold_ms = 750
 return_ms = 300

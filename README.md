@@ -1,6 +1,8 @@
 # PokéVend
 
-This is the repo for the controller code for the 3D Printed [PokéVend]() Vending Machine. 3D printed parts can be found on [Printables](). Follow the instructions below to setup the controller code on a Raspberry Pi.
+[![BuyMeACoffee](https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-donate-yellow.svg)](https://buymeacoffee.com/slayterdev)
+
+This is the repo for the controller code for the 3D Printed [PokéVend](https://www.printables.com/model/1699016-pokevend-pokemon-booster-pack-vending-machine) Vending Machine. 3D printed parts can be found on [Printables](https://www.printables.com/model/1699016-pokevend-pokemon-booster-pack-vending-machine). Follow the instructions below to setup the controller code on a Raspberry Pi.
 
 ### Bill of Materials
 
@@ -13,8 +15,9 @@ This is the repo for the controller code for the 3D Printed [PokéVend]() Vendin
     - *Note:* You can probably get away with splicing the red/black wires from an old USB cable into the PCA9685's power terminals and then powering it off the Pi's USB. But this is likely not reccomended.
 - Right angle USB-C connector ([example](https://www.amazon.com/dp/B0CNGFZ1JD?ref=ppx_yo2ov_dt_b_fed_asin_title))
 - Some wire (to connect psu screw terminal to PCA9685)
-- 6mmx2mm magnets x12
-- M3x10 screws x4
+- 6mmx2mm magnets x14
+- M3x10 screws x6
+- M3 nuts x6
 
 ### Raspberry Pi Setup
 
@@ -36,7 +39,7 @@ Follow the instructions [here](https://learn.pimoroni.com/article/getting-starte
 
 #### 4. **Software Setup**
 
-**NOTE: It is recommended to run the software before attaching the flippers to the servos. This way your servos will be set to the neutral angle.**
+**NOTE: It is recommended to run the software before attaching the paddles to the servos. This way your servos will be set to the neutral angle before mounting them.**
 
 - Clone this repositiory
 ```bash
@@ -63,3 +66,19 @@ bus = 22 # <- Replace with the number from your device
 ```bash
 systemctl --user start pokevend
 ```
+
+### Inventory Management
+
+There is an included `stock.py` script that can be used to manage the inventory of your PokéVend. You can run it with the following command:
+```bash
+./stock.py
+```
+
+The script will show a menu with the current loaded stock and options to add inventory or manage available packs. When exiting the script it will give you
+an option to restart the PokeVend service to apply changes.
+
+### Support
+
+If you run into issues feel free to open an issue here or comment on Printables and I will do my best to help you!
+
+
