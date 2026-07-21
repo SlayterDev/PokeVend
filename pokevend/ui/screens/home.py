@@ -10,6 +10,7 @@ class HomeScreen:
         self._font_title = pygame.font.SysFont("sans-serif", theme.FONT_TITLE, bold=True)
         self._font_large = pygame.font.SysFont("sans-serif", theme.FONT_LARGE)
         self._font_small = pygame.font.SysFont("sans-serif", theme.FONT_SMALL)
+        self._font_qty = pygame.font.SysFont("sans-serif", theme.FONT_QTY, bold=True)
         self._cards = self._build_cards()
 
     def _build_cards(self) -> list[PackCard]:
@@ -33,7 +34,12 @@ class HomeScreen:
         cards = []
         for i, lane in enumerate(self._app.inventory.lanes[:4]):
             rect = pygame.Rect(positions[i][0], positions[i][1], card_w, card_h)
-            cards.append(PackCard(rect, lane, self._app.image_loader, self._font_large, self._font_small))
+            cards.append(
+                PackCard(
+                    rect, lane, self._app.image_loader,
+                    self._font_large, self._font_small, self._font_qty,
+                )
+            )
         return cards
 
     def _touch_pos(self, event: pygame.event.Event) -> tuple[int, int]:

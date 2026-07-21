@@ -13,12 +13,14 @@ class PackCard:
         image_loader: ImageLoader,
         font_large: pygame.font.Font,
         font_small: pygame.font.Font,
+        font_qty: pygame.font.Font,
     ):
         self.rect = rect
         self.lane = lane
         self._image_loader = image_loader
         self._font_large = font_large
         self._font_small = font_small
+        self._font_qty = font_qty
         self._art: pygame.Surface | None = None
         self._art_ref: str = ""
 
@@ -71,9 +73,11 @@ class PackCard:
         surface.blit(series, series.get_rect(centerx=cx, top=top))
         top += series.get_height() + 4
 
-        # Quantity badge
-        qty_surf = self._font_small.render(f"×{self.lane.quantity}", True, theme.POKEMON_YELLOW)
-        qty_rect = qty_surf.get_rect(centerx=cx, top=top)
+        # Quantity badge (anchored to the card bottom so it can't spill past the border)
+        qty_surf = self._font_qty.render(f"×{self.lane.quantity}", True, theme.POKEMON_YELLOW)
+        qty_rect = qty_surf.get_rect(centerx=cx, bottom=self.rect.bottom - theme.CARD_PADDING)
+        if qty_rect.top < top:
+            qty_rect.top = top
         pygame.draw.rect(surface, (60, 50, 10), qty_rect.inflate(14, 6), border_radius=8)
         surface.blit(qty_surf, qty_rect)
 

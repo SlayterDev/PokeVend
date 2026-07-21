@@ -14,6 +14,7 @@ class ConfirmScreen:
         self._font_large = pygame.font.SysFont("sans-serif", theme.FONT_LARGE, bold=True)
         self._font_medium = pygame.font.SysFont("sans-serif", theme.FONT_MEDIUM, bold=True)
         self._font_small = pygame.font.SysFont("sans-serif", theme.FONT_SMALL)
+        self._font_qty = pygame.font.SysFont("sans-serif", theme.FONT_QTY, bold=True)
 
         img_ref = self._pack.image if self._pack else ""
         self._art = app.image_loader.load(img_ref, theme.CONFIRM_ART_SIZE)
@@ -67,8 +68,11 @@ class ConfirmScreen:
             surface.blit(series, series.get_rect(centerx=theme.WIDTH // 2, top=y))
             y += series.get_height() + 4
 
-            qty = self._font_small.render(f"{self._lane.quantity} remaining in lane", True, theme.TEXT_SECONDARY)
-            surface.blit(qty, qty.get_rect(centerx=theme.WIDTH // 2, top=y))
+            qty = self._font_qty.render(f"{self._lane.quantity} remaining in lane", True, theme.TEXT_SECONDARY)
+            qty_rect = qty.get_rect(centerx=theme.WIDTH // 2, top=y)
+            # Keep clear of the buttons if the fonts render taller than expected
+            qty_rect.bottom = min(qty_rect.bottom, self._vend_btn.rect.top - 8)
+            surface.blit(qty, qty_rect)
 
         self._cancel_btn.draw(surface)
         self._vend_btn.draw(surface)
